@@ -1,0 +1,58 @@
+name: Database Anomaly Testing
+
+on:
+  workflow_dispatch:
+    inputs:
+      db_path:
+        description: 'Database file path'
+        required: false
+        default: 'data/transactions.db'
+      table_name:
+        description: 'Table name to scan'
+        required: false
+        default: 'transactions'
+
+jobs:
+  db-anomaly-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pandas
+
+    - name: Set up test database
+      run: |
+        mkdir -p data logs
+        cd src
+        python setup_db.py
+        python add_anomalies.py
+
+    - name: Run database anomaly scan
+      run: |
+        mkdir -p logs
+        cd src
+        python db_scanner.py
+
+    - name: Upload database anomaly report
+      if: success()
+      uses: actions/upload-artifact@v4
+      with:
+        name: db-anomaly-report
+        path: logs/db_anomaly_report.html
+
+    - name: Upload test logs
+      if: success()
+      uses: actions/upload-artifact@v4
+      with:
+        name: db-test-results
+        path: logs/
