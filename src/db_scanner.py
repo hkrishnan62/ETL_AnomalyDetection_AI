@@ -1,38 +1,67 @@
-import sys, os
+import sqlite3
+import pandas as pd
+import sys
+import os
+from datetime import datetime
+
 # Ensure the 'src' directory is on PYTHONPATH for imports
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-import pandas as pd
 from validation.rule_validator import RuleValidator
 from validation.anomaly_detector import AnomalyDetector
 
-class ETLOrchestrator:
+class DBAnomalyScanner:
     """
-    Simulate ETL process: Extract, Transform (with validation and anomaly detection), and Load.
+    Connects to a database, scans a table for anomalies, and reports findings.
     """
 
-    def __init__(self, data_path):
-        self.data_path = data_path
+    def __init__(self, db_path, table_name):
+        self.db_path = db_path
+        self.table_name = table_name
+        self.conn = None
 
-    def extract(self):
-        """Read synthetic data from CSV."""
-        df = pd.read_csv(self.data_path)
-        print(f"Extracted {len(df)} records from {self.data_path}")
-        return df
+    def connect(self):
+        """Establish database connection."""
+        try:
+            self.conn = sqlite3.connect(self.db_path)
+            print(f"Connected to database: {self.db_path}")
+        except sqlite3.Error as e:
+            print(f"Error connecting to database: {e}")
+            raise
 
-    def transform(self, df):
+    def disconnect(self):
+        """Close database connection."""
+        if self.conn:
+            self.conn.close()
+            print("Database connection closed.")
+
+    def load_data(self):
+        """Load data from the specified table into a pandas DataFrame."""
+        if not self.conn:
+            raise ValueError("Database connection not established.")
+        
+        query = f"SELECT * FROM {self.table_name}"
+        try:
+            df = pd.read_sql_query(query, self.conn)
+            print(f"Loaded {len(df)} records from table '{self.table_name}'")
+            return df
+        except pd.errors.DatabaseError as e:
+            print(f"Error loading data from table: {e}")
+            raise
+
+    def scan_anomalies(self, df):
         """
-        Apply validation rules and anomaly detection, then generate detailed anomaly report.
-        Returns metrics and anomaly report (preserves all data for testing).
+        Apply validation rules and anomaly detection.
+        Returns detailed anomaly report instead of cleaned data.
         """
-        # Define validation rules
+        # Define validation rules (same as CSV version)
         required_cols = ['id', 'report_date', 'transaction_amount', 'account_type', 'account_balance', 'region']
         allowed_ranges = {
-            'transaction_amount': (0, 15000),   # Acceptable range for transaction_amount
-            'account_balance': (0, 70000)   # Acceptable range for account_balance
+            'transaction_amount': (0, 15000),
+            'account_balance': (0, 70000)
         }
         allowed_categories = {
-            'account_type': ['Retail', 'Corporate', 'Investment']  # Valid account types
+            'account_type': ['Retail', 'Corporate', 'Investment']
         }
 
         # Rule-based validation
@@ -185,16 +214,36 @@ class ETLOrchestrator:
         else:
             return "Low"
 
-    def load(self, df, output_path):
-        """Write the DataFrame to a CSV file (no cleaning for testing)."""
-        df.to_csv(output_path, index=False)
-        print(f"Saved data with {len(df)} records to {output_path} (anomalies preserved for testing)")
+    def save_cleaned_data(self, df, output_table):
+        """Save cleaned DataFrame to a new table in the database."""
+        if not self.conn:
+            raise ValueError("Database connection not established.")
+        
+        try:
+            df.to_sql(output_table, self.conn, if_exists='replace', index=False)
+            print(f"Saved cleaned data with {len(df)} records to table '{output_table}'")
+        except Exception as e:
+            print(f"Error saving cleaned data: {e}")
+            raise
+
+    def run_scan(self, output_html='anomaly_report.html'):
+        """Run the complete anomaly scanning process and generate HTML report."""
+        try:
+            self.connect()
+            df = self.load_data()
+            metrics = self.scan_anomalies(df)
+            self.generate_html_report(metrics, output_html)
+            print("Anomaly scan completed.")
+            print("Metrics:", {k: v for k, v in metrics.items() if k != 'anomaly_report'})
+            print(f"HTML report generated: {output_html}")
+            return metrics
+        finally:
+            self.disconnect()
 
     def generate_html_report(self, metrics, output_file):
         """
         Generate detailed HTML report with anomaly classifications.
         """
-        from datetime import datetime
         anomaly_report = metrics['anomaly_report']
         
         # Group anomalies by type
@@ -214,7 +263,7 @@ class ETLOrchestrator:
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>CSV Anomaly Detection Report</title>
+            <title>Database Anomaly Detection Report</title>
             <style>
                 body {{ font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }}
                 .container {{ max-width: 1200px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }}
@@ -237,9 +286,8 @@ class ETLOrchestrator:
         </head>
         <body>
             <div class="container">
-                <h1>CSV Anomaly Detection Report</h1>
+                <h1>Database Anomaly Detection Report</h1>
                 <p><strong>Generated:</strong> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
-                <p><strong>Source:</strong> {self.data_path}</p>
                 
                 <div class="summary">
                     <div class="metric">
@@ -312,9 +360,9 @@ class ETLOrchestrator:
                 </table>
                 
                 <h2>Scan Summary</h2>
-                <pre>CSV File: {self.data_path}
-Scan completed successfully with {metrics['total_anomalies_detected']} anomalies found across {len(anomaly_types)} different issue types.
-Data preserved for testing - no records were cleaned or removed.</pre>
+                <pre>Database: {self.db_path}
+Table: {self.table_name}
+Scan completed successfully with {metrics['total_anomalies_detected']} anomalies found across {len(anomaly_types)} different issue types.</pre>
             </div>
         </body>
         </html>
@@ -326,10 +374,7 @@ Data preserved for testing - no records were cleaned or removed.</pre>
         print(f"HTML report saved to {output_file}")
 
 if __name__ == "__main__":
-    # Example execution
-    orchestrator = ETLOrchestrator(data_path="../data/synthetic_data.csv")
-    raw_df = orchestrator.extract()
-    metrics = orchestrator.transform(raw_df)
-    orchestrator.load(raw_df, "../data/test_data_with_anomalies.csv")
-    orchestrator.generate_html_report(metrics, "../logs/csv_anomaly_report.html")
-    print("Metrics:", {k: v for k, v in metrics.items() if k != 'anomaly_report'})
+    # Example usage
+    scanner = DBAnomalyScanner(db_path="../data/transactions.db", table_name="transactions")
+    metrics = scanner.run_scan(output_html="../logs/db_anomaly_report.html")
+    print("Scan completed with metrics:", {k: v for k, v in metrics.items() if k != 'anomaly_report'})
