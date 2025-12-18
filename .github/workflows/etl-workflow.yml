@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'logs/**'
+  workflow_dispatch:
   pull_request:
     branches:
       - main
@@ -34,11 +37,9 @@ jobs:
         echo "ETL completed" >> ../logs/etl_output.log
         cat ../logs/etl_output.log
 
-    - name: Commit and push logs
+    - name: Upload logs
       if: success()
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add logs/
-        git commit -m "Add ETL execution log" || echo "No changes to commit"
-        git push
+      uses: actions/upload-artifact@v4
+      with:
+        name: etl-logs
+        path: logs/etl_output.log
