@@ -3,8 +3,8 @@ import sys, os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import pandas as pd
-from validator.rule_validator import RuleValidator
-from validator.anomaly_detector import AnomalyDetector
+from validation.rule_validator import RuleValidator
+from validation.anomaly_detector import AnomalyDetector
 
 class ETLOrchestrator:
     """
@@ -26,13 +26,13 @@ class ETLOrchestrator:
         Returns cleaned DataFrame and summary metrics.
         """
         # Define validation rules
-        required_cols = ['id', 'date', 'amount', 'category', 'balance', 'name']
+        required_cols = ['id', 'report_date', 'transaction_amount', 'account_type', 'account_balance', 'region']
         allowed_ranges = {
-            'amount': (0, 1000),   # Acceptable range for amount
-            'balance': (0, 1000)   # Acceptable range for balance
+            'transaction_amount': (0, 15000),   # Acceptable range for transaction_amount
+            'account_balance': (0, 70000)   # Acceptable range for account_balance
         }
         allowed_categories = {
-            'category': ['A', 'B', 'C', 'D']  # Valid category codes
+            'account_type': ['Retail', 'Corporate', 'Investment']  # Valid account types
         }
 
         # Rule-based validation
@@ -44,7 +44,7 @@ class ETLOrchestrator:
 
         # Statistical anomaly detection on numeric columns
         detector = AnomalyDetector(factor=1.5)
-        numeric_cols = ['amount', 'balance']
+        numeric_cols = ['transaction_amount', 'account_balance']
         anomaly_mask_stats = detector.detect(df, columns=numeric_cols)
 
         # Combine all anomaly flags (logical OR)
