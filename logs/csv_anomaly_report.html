@@ -1,0 +1,1380 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>CSV Anomaly Detection Report</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+                .container { max-width: 1200px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+                h1 { color: #333; text-align: center; }
+                .summary { background: #e8f4fd; padding: 15px; border-radius: 5px; margin: 10px 0; display: flex; justify-content: space-around; }
+                .metric { text-align: center; }
+                .metric-value { font-size: 24px; font-weight: bold; color: #007acc; }
+                table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                th { background-color: #f2f2f2; }
+                .severity-critical { background-color: #ffebee; }
+                .severity-high { background-color: #fff3e0; }
+                .severity-medium { background-color: #e8f5e8; }
+                .severity-low { background-color: #f3e5f5; }
+                .anomaly-type { margin: 20px 0; }
+                .anomaly-type h3 { color: #d32f2f; border-bottom: 2px solid #d32f2f; padding-bottom: 5px; }
+                .issue-list { background: #f9f9f9; padding: 10px; border-radius: 5px; }
+                pre { background: #f8f8f8; padding: 15px; border-radius: 5px; overflow-x: auto; white-space: pre-wrap; }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>CSV Anomaly Detection Report</h1>
+                <p><strong>Generated:</strong> 2025-12-18 05:46:16</p>
+                <p><strong>Source:</strong> ../data/synthetic_data.csv</p>
+                
+                <div class="summary">
+                    <div class="metric">
+                        <div class="metric-value">50003</div>
+                        <div>Total Records</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">3326</div>
+                        <div>Anomalies Detected</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">67</div>
+                        <div>Critical</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">555</div>
+                        <div>High</div>
+                    </div>
+                </div>
+                
+                <h2>Severity Breakdown</h2>
+                <table>
+                    <tr><th>Severity</th><th>Count</th><th>Description</th></tr>
+                    <tr><td>Critical</td><td>67</td><td>High-risk regulatory violations requiring immediate attention</td></tr>
+                    <tr><td>High</td><td>555</td><td>Serious anomalies that may indicate compliance issues</td></tr>
+                    <tr><td>Medium</td><td>2515</td><td>Moderate anomalies requiring review</td></tr>
+                    <tr><td>Low</td><td>189</td><td>Minor data quality issues</td></tr>
+                </table>
+                
+                <h2>Anomalies by Type</h2>
+        
+                <div class="anomaly-type">
+                    <h3>Accounting Error - Negative Amount (151 instances)</h3>
+                    <div class="issue-list">
+                        <table>
+                            <tr><th>Record ID</th><th>Amount</th><th>Balance</th><th>Account Type</th><th>Region</th><th>Risk Score</th><th>Severity</th></tr>
+            
+                            <tr class="severity-high">
+                                <td>102</td>
+                                <td>$-1,000.00</td>
+                                <td>$46,359.92</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>37.52542055</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>388</td>
+                                <td>$-500.00</td>
+                                <td>$63,350.46</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>19.45843742</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>560</td>
+                                <td>$-1,000.00</td>
+                                <td>$59,594.92</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>24.78099997</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>1175</td>
+                                <td>$-500.00</td>
+                                <td>$61,307.99</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>92.35064092</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>1598</td>
+                                <td>$-500.00</td>
+                                <td>$64,070.47</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>17.20512541</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>1680</td>
+                                <td>$-500.00</td>
+                                <td>$35,543.97</td>
+                                <td>Investment</td>
+                                <td>EU</td>
+                                <td>56.39492641</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>1701</td>
+                                <td>$-1,000.00</td>
+                                <td>$66,807.70</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>80.6940959</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>2125</td>
+                                <td>$-1,000.00</td>
+                                <td>$57,427.49</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>20.83490746</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>3484</td>
+                                <td>$-1,000.00</td>
+                                <td>$50,810.96</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>91.82451504</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>3794</td>
+                                <td>$-1,000.00</td>
+                                <td>$53,169.36</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>6.713627009</td>
+                                <td>High</td>
+                            </tr>
+                <tr><td colspan="7"><em>... and 141 more records</em></td></tr>
+                        </table>
+                    </div>
+                </div>
+            
+                <div class="anomaly-type">
+                    <h3>Excessive Account Balance (1150 instances)</h3>
+                    <div class="issue-list">
+                        <table>
+                            <tr><th>Record ID</th><th>Amount</th><th>Balance</th><th>Account Type</th><th>Region</th><th>Risk Score</th><th>Severity</th></tr>
+            
+                            <tr class="severity-medium">
+                                <td>41</td>
+                                <td>$11,476.93</td>
+                                <td>$75,058.48</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>21.42088235</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>50</td>
+                                <td>$6,473.92</td>
+                                <td>$72,618.12</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>45.19155304</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>81</td>
+                                <td>$9,560.66</td>
+                                <td>$74,145.49</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>83.76795875</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>90</td>
+                                <td>$11,026.53</td>
+                                <td>$75,203.07</td>
+                                <td>Investment</td>
+                                <td>APAC</td>
+                                <td>66.47937168</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>156</td>
+                                <td>$8,571.30</td>
+                                <td>$70,022.69</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>51.88211316</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>197</td>
+                                <td>$8,232.29</td>
+                                <td>$84,018.76</td>
+                                <td>Corporate</td>
+                                <td>APAC</td>
+                                <td>96.89690992</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>240</td>
+                                <td>$11,704.87</td>
+                                <td>$70,172.99</td>
+                                <td>Corporate</td>
+                                <td>APAC</td>
+                                <td>80.10776455</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>246</td>
+                                <td>$9,331.00</td>
+                                <td>$77,726.11</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>85.31188578</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>305</td>
+                                <td>$9,958.20</td>
+                                <td>$72,295.50</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>18.82758773</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>383</td>
+                                <td>$5,752.21</td>
+                                <td>$73,030.45</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>69.57020356</td>
+                                <td>Medium</td>
+                            </tr>
+                <tr><td colspan="7"><em>... and 1140 more records</em></td></tr>
+                        </table>
+                    </div>
+                </div>
+            
+                <div class="anomaly-type">
+                    <h3>Excessive Transaction Amount (352 instances)</h3>
+                    <div class="issue-list">
+                        <table>
+                            <tr><th>Record ID</th><th>Amount</th><th>Balance</th><th>Account Type</th><th>Region</th><th>Risk Score</th><th>Severity</th></tr>
+            
+                            <tr class="severity-medium">
+                                <td>180</td>
+                                <td>$15,440.34</td>
+                                <td>$41,796.03</td>
+                                <td>Investment</td>
+                                <td>EU</td>
+                                <td>28.12899697</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>210</td>
+                                <td>$17,705.46</td>
+                                <td>$27,681.38</td>
+                                <td>Corporate</td>
+                                <td>EU</td>
+                                <td>14.50569027</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>479</td>
+                                <td>$16,157.76</td>
+                                <td>$52,182.61</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>50.03400974</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>655</td>
+                                <td>$15,146.72</td>
+                                <td>$49,071.86</td>
+                                <td>Corporate</td>
+                                <td>US</td>
+                                <td>55.41748697</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>706</td>
+                                <td>$100,000.00</td>
+                                <td>$54,279.72</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>52.57475966</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>756</td>
+                                <td>$15,264.76</td>
+                                <td>$73,901.81</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>27.30341719</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>763</td>
+                                <td>$15,120.17</td>
+                                <td>$56,218.45</td>
+                                <td>Investment</td>
+                                <td>US</td>
+                                <td>15.71712228</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>881</td>
+                                <td>$15,053.86</td>
+                                <td>$63,983.08</td>
+                                <td>Corporate</td>
+                                <td>APAC</td>
+                                <td>67.30111559</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>945</td>
+                                <td>$100,000.00</td>
+                                <td>$52,889.38</td>
+                                <td>Investment</td>
+                                <td>US</td>
+                                <td>58.21179126</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>1234</td>
+                                <td>$15,159.42</td>
+                                <td>$57,615.54</td>
+                                <td>Investment</td>
+                                <td>US</td>
+                                <td>41.70088629</td>
+                                <td>Medium</td>
+                            </tr>
+                <tr><td colspan="7"><em>... and 342 more records</em></td></tr>
+                        </table>
+                    </div>
+                </div>
+            
+                <div class="anomaly-type">
+                    <h3>Invalid Account Type (301 instances)</h3>
+                    <div class="issue-list">
+                        <table>
+                            <tr><th>Record ID</th><th>Amount</th><th>Balance</th><th>Account Type</th><th>Region</th><th>Risk Score</th><th>Severity</th></tr>
+            
+                            <tr class="severity-medium">
+                                <td>310</td>
+                                <td>$9,595.61</td>
+                                <td>$69,282.19</td>
+                                <td>nan</td>
+                                <td>APAC</td>
+                                <td>37.11097868</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>434</td>
+                                <td>$11,435.08</td>
+                                <td>$51,267.20</td>
+                                <td>nan</td>
+                                <td>US</td>
+                                <td>34.81239232</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>637</td>
+                                <td>$11,646.34</td>
+                                <td>$45,435.31</td>
+                                <td>nan</td>
+                                <td>APAC</td>
+                                <td>68.20763639</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-low">
+                                <td>909</td>
+                                <td>$11,290.97</td>
+                                <td>$41,610.97</td>
+                                <td>UNKNOWN</td>
+                                <td>US</td>
+                                <td>41.75792081</td>
+                                <td>Low</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>965</td>
+                                <td>$9,820.53</td>
+                                <td>$51,756.13</td>
+                                <td>nan</td>
+                                <td>APAC</td>
+                                <td>1.702795917</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-low">
+                                <td>1050</td>
+                                <td>$12,760.18</td>
+                                <td>$46,662.28</td>
+                                <td>INVALID_TYPE</td>
+                                <td>US</td>
+                                <td>41.82455582</td>
+                                <td>Low</td>
+                            </tr>
+                
+                            <tr class="severity-low">
+                                <td>1085</td>
+                                <td>$10,763.87</td>
+                                <td>$39,830.96</td>
+                                <td>UNKNOWN</td>
+                                <td>US</td>
+                                <td>65.81499687</td>
+                                <td>Low</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>1211</td>
+                                <td>$7,512.27</td>
+                                <td>$39,996.79</td>
+                                <td>nan</td>
+                                <td>US</td>
+                                <td>87.77597892</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>1281</td>
+                                <td>$10,267.08</td>
+                                <td>$45,867.03</td>
+                                <td>nan</td>
+                                <td>US</td>
+                                <td>52.07946891</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>1424</td>
+                                <td>$8,321.58</td>
+                                <td>$44,426.90</td>
+                                <td>nan</td>
+                                <td>EU</td>
+                                <td>32.85727898</td>
+                                <td>Medium</td>
+                            </tr>
+                <tr><td colspan="7"><em>... and 291 more records</em></td></tr>
+                        </table>
+                    </div>
+                </div>
+            
+                <div class="anomaly-type">
+                    <h3>Missing Required Data (301 instances)</h3>
+                    <div class="issue-list">
+                        <table>
+                            <tr><th>Record ID</th><th>Amount</th><th>Balance</th><th>Account Type</th><th>Region</th><th>Risk Score</th><th>Severity</th></tr>
+            
+                            <tr class="severity-medium">
+                                <td>310</td>
+                                <td>$9,595.61</td>
+                                <td>$69,282.19</td>
+                                <td>nan</td>
+                                <td>APAC</td>
+                                <td>37.11097868</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>434</td>
+                                <td>$11,435.08</td>
+                                <td>$51,267.20</td>
+                                <td>nan</td>
+                                <td>US</td>
+                                <td>34.81239232</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>637</td>
+                                <td>$11,646.34</td>
+                                <td>$45,435.31</td>
+                                <td>nan</td>
+                                <td>APAC</td>
+                                <td>68.20763639</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>965</td>
+                                <td>$9,820.53</td>
+                                <td>$51,756.13</td>
+                                <td>nan</td>
+                                <td>APAC</td>
+                                <td>1.702795917</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>1211</td>
+                                <td>$7,512.27</td>
+                                <td>$39,996.79</td>
+                                <td>nan</td>
+                                <td>US</td>
+                                <td>87.77597892</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>1281</td>
+                                <td>$10,267.08</td>
+                                <td>$45,867.03</td>
+                                <td>nan</td>
+                                <td>US</td>
+                                <td>52.07946891</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-low">
+                                <td>1374</td>
+                                <td>$6,772.88</td>
+                                <td>$nan</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>92.91899747</td>
+                                <td>Low</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>1424</td>
+                                <td>$8,321.58</td>
+                                <td>$44,426.90</td>
+                                <td>nan</td>
+                                <td>EU</td>
+                                <td>32.85727898</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-low">
+                                <td>1882</td>
+                                <td>$13,231.17</td>
+                                <td>$nan</td>
+                                <td>Investment</td>
+                                <td>US</td>
+                                <td>92.03655474</td>
+                                <td>Low</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>1968</td>
+                                <td>$9,697.45</td>
+                                <td>$38,776.78</td>
+                                <td>nan</td>
+                                <td>EU</td>
+                                <td>16.68422029</td>
+                                <td>Medium</td>
+                            </tr>
+                <tr><td colspan="7"><em>... and 291 more records</em></td></tr>
+                        </table>
+                    </div>
+                </div>
+            
+                <div class="anomaly-type">
+                    <h3>Money Laundering - Round Number Transaction (50 instances)</h3>
+                    <div class="issue-list">
+                        <table>
+                            <tr><th>Record ID</th><th>Amount</th><th>Balance</th><th>Account Type</th><th>Region</th><th>Risk Score</th><th>Severity</th></tr>
+            
+                            <tr class="severity-critical">
+                                <td>706</td>
+                                <td>$100,000.00</td>
+                                <td>$54,279.72</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>52.57475966</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>945</td>
+                                <td>$100,000.00</td>
+                                <td>$52,889.38</td>
+                                <td>Investment</td>
+                                <td>US</td>
+                                <td>58.21179126</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>1758</td>
+                                <td>$100,000.00</td>
+                                <td>$42,099.23</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>66.82731449</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>3634</td>
+                                <td>$100,000.00</td>
+                                <td>$56,025.86</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>53.01359317</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>3986</td>
+                                <td>$100,000.00</td>
+                                <td>$69,813.86</td>
+                                <td>Corporate</td>
+                                <td>APAC</td>
+                                <td>82.30797767</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>5251</td>
+                                <td>$100,000.00</td>
+                                <td>$47,222.38</td>
+                                <td>Investment</td>
+                                <td>EU</td>
+                                <td>52.19487085</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>7018</td>
+                                <td>$100,000.00</td>
+                                <td>$48,493.53</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>68.41189086</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>7906</td>
+                                <td>$100,000.00</td>
+                                <td>$43,912.22</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>33.48049901</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>8605</td>
+                                <td>$100,000.00</td>
+                                <td>$55,803.02</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>31.94676471</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>8750</td>
+                                <td>$100,000.00</td>
+                                <td>$64,045.59</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>72.67388764</td>
+                                <td>Critical</td>
+                            </tr>
+                <tr><td colspan="7"><em>... and 40 more records</em></td></tr>
+                        </table>
+                    </div>
+                </div>
+            
+                <div class="anomaly-type">
+                    <h3>Negative Account Balance (49 instances)</h3>
+                    <div class="issue-list">
+                        <table>
+                            <tr><th>Record ID</th><th>Amount</th><th>Balance</th><th>Account Type</th><th>Region</th><th>Risk Score</th><th>Severity</th></tr>
+            
+                            <tr class="severity-high">
+                                <td>103</td>
+                                <td>$9,314.57</td>
+                                <td>$-500.00</td>
+                                <td>Corporate</td>
+                                <td>APAC</td>
+                                <td>64.94794615</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>1207</td>
+                                <td>$8,596.02</td>
+                                <td>$-500.00</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>15.16374471</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>6499</td>
+                                <td>$9,867.10</td>
+                                <td>$-500.00</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>7.233635051</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>7228</td>
+                                <td>$9,898.40</td>
+                                <td>$-500.00</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>70.41371314</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>7673</td>
+                                <td>$10,668.65</td>
+                                <td>$-500.00</td>
+                                <td>Investment</td>
+                                <td>EU</td>
+                                <td>37.03069264</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>8189</td>
+                                <td>$11,364.68</td>
+                                <td>$-500.00</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>6.981904359</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>8859</td>
+                                <td>$6,793.57</td>
+                                <td>$-500.00</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>48.590101</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>10142</td>
+                                <td>$11,505.78</td>
+                                <td>$-500.00</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>67.78765146</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>12709</td>
+                                <td>$16,568.24</td>
+                                <td>$-500.00</td>
+                                <td>Corporate</td>
+                                <td>APAC</td>
+                                <td>51.00438737</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>13381</td>
+                                <td>$11,653.89</td>
+                                <td>$-500.00</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>48.40643284</td>
+                                <td>High</td>
+                            </tr>
+                <tr><td colspan="7"><em>... and 39 more records</em></td></tr>
+                        </table>
+                    </div>
+                </div>
+            
+                <div class="anomaly-type">
+                    <h3>Negative Transaction Amount (151 instances)</h3>
+                    <div class="issue-list">
+                        <table>
+                            <tr><th>Record ID</th><th>Amount</th><th>Balance</th><th>Account Type</th><th>Region</th><th>Risk Score</th><th>Severity</th></tr>
+            
+                            <tr class="severity-high">
+                                <td>102</td>
+                                <td>$-1,000.00</td>
+                                <td>$46,359.92</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>37.52542055</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>388</td>
+                                <td>$-500.00</td>
+                                <td>$63,350.46</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>19.45843742</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>560</td>
+                                <td>$-1,000.00</td>
+                                <td>$59,594.92</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>24.78099997</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>1175</td>
+                                <td>$-500.00</td>
+                                <td>$61,307.99</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>92.35064092</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>1598</td>
+                                <td>$-500.00</td>
+                                <td>$64,070.47</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>17.20512541</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>1680</td>
+                                <td>$-500.00</td>
+                                <td>$35,543.97</td>
+                                <td>Investment</td>
+                                <td>EU</td>
+                                <td>56.39492641</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>1701</td>
+                                <td>$-1,000.00</td>
+                                <td>$66,807.70</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>80.6940959</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>2125</td>
+                                <td>$-1,000.00</td>
+                                <td>$57,427.49</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>20.83490746</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>3484</td>
+                                <td>$-1,000.00</td>
+                                <td>$50,810.96</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>91.82451504</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>3794</td>
+                                <td>$-1,000.00</td>
+                                <td>$53,169.36</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>6.713627009</td>
+                                <td>High</td>
+                            </tr>
+                <tr><td colspan="7"><em>... and 141 more records</em></td></tr>
+                        </table>
+                    </div>
+                </div>
+            
+                <div class="anomaly-type">
+                    <h3>Statistical Outlier (522 instances)</h3>
+                    <div class="issue-list">
+                        <table>
+                            <tr><th>Record ID</th><th>Amount</th><th>Balance</th><th>Account Type</th><th>Region</th><th>Risk Score</th><th>Severity</th></tr>
+            
+                            <tr class="severity-high">
+                                <td>102</td>
+                                <td>$-1,000.00</td>
+                                <td>$46,359.92</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>37.52542055</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>103</td>
+                                <td>$9,314.57</td>
+                                <td>$-500.00</td>
+                                <td>Corporate</td>
+                                <td>APAC</td>
+                                <td>64.94794615</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>231</td>
+                                <td>$8,539.27</td>
+                                <td>$20,778.03</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>91.8271849</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>263</td>
+                                <td>$3,517.47</td>
+                                <td>$59,764.09</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>55.60566233</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>388</td>
+                                <td>$-500.00</td>
+                                <td>$63,350.46</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>19.45843742</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>411</td>
+                                <td>$11,423.23</td>
+                                <td>$20,846.10</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>38.43063242</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>560</td>
+                                <td>$-1,000.00</td>
+                                <td>$59,594.92</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>24.78099997</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>642</td>
+                                <td>$13,338.04</td>
+                                <td>$19,855.59</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>4.968927919</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>1062</td>
+                                <td>$4,302.91</td>
+                                <td>$56,916.24</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>68.1290214</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>1102</td>
+                                <td>$4,207.49</td>
+                                <td>$43,821.60</td>
+                                <td>Investment</td>
+                                <td>APAC</td>
+                                <td>85.94546019</td>
+                                <td>Medium</td>
+                            </tr>
+                <tr><td colspan="7"><em>... and 512 more records</em></td></tr>
+                        </table>
+                    </div>
+                </div>
+            
+                <div class="anomaly-type">
+                    <h3>Statistical Outlier - High Value (380 instances)</h3>
+                    <div class="issue-list">
+                        <table>
+                            <tr><th>Record ID</th><th>Amount</th><th>Balance</th><th>Account Type</th><th>Region</th><th>Risk Score</th><th>Severity</th></tr>
+            
+                            <tr class="severity-high">
+                                <td>197</td>
+                                <td>$8,232.29</td>
+                                <td>$84,018.76</td>
+                                <td>Corporate</td>
+                                <td>APAC</td>
+                                <td>96.89690992</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>210</td>
+                                <td>$17,705.46</td>
+                                <td>$27,681.38</td>
+                                <td>Corporate</td>
+                                <td>EU</td>
+                                <td>14.50569027</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>246</td>
+                                <td>$9,331.00</td>
+                                <td>$77,726.11</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>85.31188578</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>422</td>
+                                <td>$13,510.68</td>
+                                <td>$79,709.35</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>19.49813561</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>479</td>
+                                <td>$16,157.76</td>
+                                <td>$52,182.61</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>50.03400974</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>706</td>
+                                <td>$100,000.00</td>
+                                <td>$54,279.72</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>52.57475966</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>945</td>
+                                <td>$100,000.00</td>
+                                <td>$52,889.38</td>
+                                <td>Investment</td>
+                                <td>US</td>
+                                <td>58.21179126</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>1616</td>
+                                <td>$16,386.22</td>
+                                <td>$58,740.32</td>
+                                <td>Corporate</td>
+                                <td>US</td>
+                                <td>52.25381512</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>1758</td>
+                                <td>$100,000.00</td>
+                                <td>$42,099.23</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>66.82731449</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>1788</td>
+                                <td>$8,495.69</td>
+                                <td>$77,084.54</td>
+                                <td>Corporate</td>
+                                <td>EU</td>
+                                <td>71.30656463</td>
+                                <td>High</td>
+                            </tr>
+                <tr><td colspan="7"><em>... and 370 more records</em></td></tr>
+                        </table>
+                    </div>
+                </div>
+            
+                <div class="anomaly-type">
+                    <h3>Structuring - Under Reporting Threshold (964 instances)</h3>
+                    <div class="issue-list">
+                        <table>
+                            <tr><th>Record ID</th><th>Amount</th><th>Balance</th><th>Account Type</th><th>Region</th><th>Risk Score</th><th>Severity</th></tr>
+            
+                            <tr class="severity-medium">
+                                <td>33</td>
+                                <td>$9,973.01</td>
+                                <td>$61,486.25</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>54.66298302</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>73</td>
+                                <td>$9,928.35</td>
+                                <td>$58,530.40</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>41.33980576</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>112</td>
+                                <td>$9,946.97</td>
+                                <td>$38,894.91</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>28.11183592</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>117</td>
+                                <td>$9,930.58</td>
+                                <td>$50,200.25</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>85.47308331</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-high">
+                                <td>305</td>
+                                <td>$9,958.20</td>
+                                <td>$72,295.50</td>
+                                <td>Retail</td>
+                                <td>APAC</td>
+                                <td>18.82758773</td>
+                                <td>High</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>331</td>
+                                <td>$9,975.51</td>
+                                <td>$53,733.45</td>
+                                <td>Investment</td>
+                                <td>APAC</td>
+                                <td>75.12050393</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>355</td>
+                                <td>$9,961.97</td>
+                                <td>$68,704.43</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>96.50870634</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>357</td>
+                                <td>$9,962.97</td>
+                                <td>$59,263.56</td>
+                                <td>Corporate</td>
+                                <td>EU</td>
+                                <td>9.30445154</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>442</td>
+                                <td>$9,934.61</td>
+                                <td>$45,047.20</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>49.12061206</td>
+                                <td>Medium</td>
+                            </tr>
+                
+                            <tr class="severity-medium">
+                                <td>491</td>
+                                <td>$9,984.05</td>
+                                <td>$52,012.41</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>72.64936639</td>
+                                <td>Medium</td>
+                            </tr>
+                <tr><td colspan="7"><em>... and 954 more records</em></td></tr>
+                        </table>
+                    </div>
+                </div>
+            
+                <div class="anomaly-type">
+                    <h3>Suspicious High-Value Transaction (8 instances)</h3>
+                    <div class="issue-list">
+                        <table>
+                            <tr><th>Record ID</th><th>Amount</th><th>Balance</th><th>Account Type</th><th>Region</th><th>Risk Score</th><th>Severity</th></tr>
+            
+                            <tr class="severity-critical">
+                                <td>3986</td>
+                                <td>$100,000.00</td>
+                                <td>$69,813.86</td>
+                                <td>Corporate</td>
+                                <td>APAC</td>
+                                <td>82.30797767</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>16147</td>
+                                <td>$100,000.00</td>
+                                <td>$56,890.34</td>
+                                <td>Investment</td>
+                                <td>APAC</td>
+                                <td>90.28592725</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>25250</td>
+                                <td>$100,000.00</td>
+                                <td>$65,211.55</td>
+                                <td>Corporate</td>
+                                <td>US</td>
+                                <td>93.68680686</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>27032</td>
+                                <td>$100,000.00</td>
+                                <td>$55,054.15</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>92.10462944</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>37419</td>
+                                <td>$100,000.00</td>
+                                <td>$32,131.51</td>
+                                <td>Corporate</td>
+                                <td>EU</td>
+                                <td>87.11789573</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>37537</td>
+                                <td>$100,000.00</td>
+                                <td>$70,359.59</td>
+                                <td>Retail</td>
+                                <td>EU</td>
+                                <td>95.52930414</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>38127</td>
+                                <td>$100,000.00</td>
+                                <td>$75,336.12</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>87.68364657</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                            <tr class="severity-critical">
+                                <td>45699</td>
+                                <td>$100,000.00</td>
+                                <td>$45,172.03</td>
+                                <td>Retail</td>
+                                <td>US</td>
+                                <td>82.08934531</td>
+                                <td>Critical</td>
+                            </tr>
+                
+                        </table>
+                    </div>
+                </div>
+            
+                <h2>Detailed Metrics</h2>
+                <table>
+                    <tr><th>Metric</th><th>Value</th></tr>
+                    <tr><td>Total Records Scanned</td><td>50003</td></tr>
+                    <tr><td>Rule-Based Anomalies</td><td>2078</td></tr>
+                    <tr><td>Statistical Anomalies</td><td>902</td></tr>
+                    <tr><td>Total Anomalies Detected</td><td>3326</td></tr>
+                </table>
+                
+                <h2>Scan Summary</h2>
+                <pre>CSV File: ../data/synthetic_data.csv
+Scan completed successfully with 3326 anomalies found across 12 different issue types.
+Data preserved for testing - no records were cleaned or removed.</pre>
+            </div>
+        </body>
+        </html>
+        

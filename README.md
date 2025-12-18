@@ -1,15 +1,15 @@
 AIETLTest
 
-An AI-powered ETL (Extract, Transform, Load) pipeline for data processing with built-in anomaly detection and validation.
+An AI-powered ETL testing framework for data processing with built-in anomaly detection and regulatory compliance validation.
 
-Features
+## Features
 
-- Data Extraction: Reads synthetic financial transaction data from CSV files
-- Data Validation: Performs rule-based validation on required columns, ranges, and categories
-- Anomaly Detection: Uses statistical methods (IQR-based) to identify outliers in numeric data
-- Data Cleaning: Removes detected anomalies and produces cleaned datasets
-- Comprehensive Logging: Generates detailed execution logs and HTML reports
-- Automated CI/CD: GitHub Actions workflow for automated testing and reporting
+- **Data Source Support**: Processes CSV files and database tables
+- **Comprehensive Anomaly Detection**: Rule-based and statistical outlier detection
+- **Regulatory Compliance**: Identifies AML, sanctions, and financial crime patterns
+- **Detailed Reporting**: Generates HTML reports with categorized findings and severity scoring
+- **Testing Framework**: Preserves all anomalies for continuous testing and validation
+- **Automated CI/CD**: GitHub Actions workflows for automated testing and reporting
 
 ## Project Structure
 
@@ -17,12 +17,20 @@ Features
 AIETLTest/
 ├── .github/
 │   └── workflows/
-│       └── etl-workflow.yml    # GitHub Actions CI/CD pipeline
+│       ├── etl-workflow.yml         # GitHub Actions CI/CD for CSV processing
+│       └── db-testing-workflow.yml  # Database anomaly testing workflow
 ├── data/
-│   ├── synthetic_data.csv      # Input synthetic dataset
-│   └── cleaned_data.csv        # Output cleaned dataset
+│   ├── synthetic_data.csv           # Input synthetic dataset
+│   ├── test_data_with_anomalies.csv # Output dataset with anomalies preserved (CSV)
+│   └── transactions.db              # SQLite database for DB operations
+├── logs/
+│   ├── csv_anomaly_report.html      # HTML report for CSV processing
+│   └── db_anomaly_report.html       # HTML report for database scanning
 ├── src/
-│   ├── orchestrator.py         # Main ETL orchestration script
+│   ├── orchestrator.py         # Main ETL orchestration script (CSV)
+│   ├── db_scanner.py           # Database anomaly scanning script
+│   ├── setup_db.py             # Database setup from CSV
+│   ├── add_anomalies.py        # Add regulatory anomalies to database
 │   └── validation/
 │       ├── anomaly_detector.py # Statistical anomaly detection
 │       └── rule_validator.py   # Rule-based data validation
@@ -54,20 +62,44 @@ AIETLTest/
 
 ## Usage
 
-### Running the ETL Pipeline
+### CSV Testing Framework
 
-Execute the main orchestrator script:
+Execute the main orchestrator script for CSV anomaly detection:
 
-
+```bash
 cd src
 python orchestrator.py
-
+```
 
 This will:
 - Extract data from `../data/synthetic_data.csv`
-- Apply validation rules and anomaly detection
-- Save cleaned data to `../data/cleaned_data.csv`
-- Display processing metrics
+- Apply comprehensive anomaly detection (rules + statistics)
+- Classify findings by regulatory categories (Money Laundering, Structuring, etc.)
+- Generate detailed HTML report with severity scoring
+- **Preserve all data** including anomalies for testing purposes
+- Save complete dataset to `../data/test_data_with_anomalies.csv`
+
+### Database Anomaly Scanning
+
+For database input, first set up the database from CSV:
+
+```bash
+cd src
+python setup_db.py
+```
+
+Then run the database scanner:
+
+```bash
+python db_scanner.py
+```
+
+This will:
+- Connect to the SQLite database at `../data/transactions.db`
+- Scan the `transactions` table for anomalies
+- Generate detailed HTML report with severity scoring and regulatory classifications
+- **Preserve all data** including anomalies for testing purposes
+- Save HTML report to `../logs/db_anomaly_report.html`
 
 Validation Rules
 
@@ -112,13 +144,31 @@ The project includes a GitHub Actions workflow that:
 
 You can manually trigger the workflow from the GitHub Actions tab.
 
+### Database Testing Workflow
+
+The project includes a separate workflow for database anomaly testing:
+
+- **Trigger**: Manual (`workflow_dispatch`)
+- **Purpose**: Comprehensive database scanning with detailed regulatory anomaly reports
+- **Features**: 
+  - Detailed anomaly classification (Money Laundering, Structuring, etc.)
+  - Severity scoring (Critical, High, Medium, Low)
+  - HTML report with categorized findings
+  - No data cleaning - preserves anomalies for testing
+
+To run database testing:
+1. Go to Actions tab
+2. Select "Database Anomaly Testing"
+3. Click "Run workflow"
+4. Download the `db-anomaly-report` artifact
+
 ### Viewing Reports
 
 After workflow execution:
 1. Go to the Actions tab
 2. Select the latest workflow run
 3. Download artifacts from the "Artifacts" section
-4. Open `etl_report.html` in a web browser for a formatted report
+4. Open `etl_report.html` or `db_anomaly_report.html` in a web browser for formatted reports
 
 ## Data Description
 
@@ -131,6 +181,10 @@ The synthetic dataset includes:
 - **account_age**: Account age in months
 - **account_type**: Type of account (`Retail`, `Corporate`, `Investment`)
 - **region**: Geographic region (`APAC`, `EU`, `US`)
+
+## Database Support
+
+The project supports SQLite databases for data processing. Use `setup_db.py` to create a database from the CSV file, then use `db_scanner.py` for anomaly detection on database tables. Use `add_anomalies.py` to add various regulatory anomalies (money laundering patterns, structuring, high-risk transactions, etc.) for testing the detection capabilities. The database scanner generates detailed HTML reports with anomaly classifications and severity scoring, making it ideal for compliance testing and regulatory monitoring.
 
 ## Contributing
 
