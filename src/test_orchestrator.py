@@ -662,7 +662,7 @@ def create_sample_load_func(output_path: str):
 
 
 if __name__ == "__main__":
-    # Example configuration
+    # Try to load config from test_config.py if it exists (for GitHub Actions)
     config = {
         'log_dir': '../logs',
         'halt_on_critical': False,
@@ -682,6 +682,19 @@ if __name__ == "__main__":
             }
         }
     }
+
+    # Load dynamic config if available (for GitHub Actions)
+    try:
+        import sys
+        import os
+        config_file = os.path.join(os.path.dirname(__file__), 'test_config.py')
+        if os.path.exists(config_file):
+            sys.path.insert(0, os.path.dirname(config_file))
+            import test_config
+            config = test_config.config
+            print(f"Loaded configuration from {config_file}")
+    except Exception as e:
+        print(f"Using default configuration: {e}")
 
     # Create orchestrator
     orchestrator = TestOrchestrator(config)

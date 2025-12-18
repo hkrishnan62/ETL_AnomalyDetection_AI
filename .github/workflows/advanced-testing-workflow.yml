@@ -61,10 +61,11 @@ jobs:
         cd src
 
         # Create dynamic config based on inputs
-        cat > test_config.py << EOF
+        cat > test_config.py << 'EOF'
+import os
 config = {
     'log_dir': '../logs',
-    'halt_on_critical': ${HALT_ON_CRITICAL:-false},
+    'halt_on_critical': os.getenv('HALT_ON_CRITICAL', 'false').lower() == 'true',
     'validation': {
         'extract': {
             'enabled': True,
@@ -73,7 +74,7 @@ config = {
         },
         'transform': {
             'enabled': True,
-            'max_anomaly_rate': ${MAX_ANOMALY_RATE:-10.0},
+            'max_anomaly_rate': float(os.getenv('MAX_ANOMALY_RATE', '10.0')),
             'iqr_factor': 1.5
         },
         'load': {
