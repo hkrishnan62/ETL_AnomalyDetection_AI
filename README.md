@@ -18,7 +18,7 @@ validated and unit-tested.
 ## Project Structure
 
 ```
-AIETLTest/
+ETL_AnomalyDetection_AI
 ├── .github/
 │   └── workflows/
 │       ├── etl-workflow.yml         # GitHub Actions CI/CD for CSV processing
@@ -52,7 +52,7 @@ AIETLTest/
 
 1. Clone the repository:
    
-   git clone https://github.com/hkrishnan62/AIETLTest.git
+   git clone https://github.com/hkrishnan62/ETL_AnomalyDetection_AI.git
    cd AIETLTest
    
 
