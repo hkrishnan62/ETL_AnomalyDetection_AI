@@ -1,0 +1,125 @@
+name: Unified Anomaly Detection Validation
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      data_source:
+        description: 'Data source (csv or db)'
+        required: true
+        default: 'csv'
+        type: choice
+        options:
+          - csv
+          - db
+      csv_path:
+        description: 'Path to CSV file (if CSV selected)'
+        required: false
+        default: 'data/cleaned_data.csv'
+      db_path:
+        description: 'Path to database file (if DB selected)'
+        required: false
+        default: 'data/transactions.db'
+
+jobs:
+  validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run Unified Validation (CSV)
+      if: github.event.inputs.data_source == 'csv' || github.event_name != 'workflow_dispatch'
+      run: |
+        CSV_PATH="${{ github.event.inputs.csv_path || 'data/cleaned_data.csv' }}"
+        echo "Validating CSV: $CSV_PATH"
+        python scripts/unified_validation.py --csv "$CSV_PATH" --output validation_report.json
+
+    - name: Run Unified Validation (Database)
+      if: github.event.inputs.data_source == 'db'
+      run: |
+        DB_PATH="${{ github.event.inputs.db_path || 'data/transactions.db' }}"
+        echo "Validating Database: $DB_PATH"
+        python scripts/unified_validation.py --db "$DB_PATH" --table transactions --output validation_report.json
+
+    - name: Generate Report
+      if: always()
+      run: |
+        echo "# Unified Anomaly Detection Validation Report" > VALIDATION_RESULTS.md
+        echo "" >> VALIDATION_RESULTS.md
+        echo "**Timestamp:** $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> VALIDATION_RESULTS.md
+        echo "**Commit:** ${{ github.sha }}" >> VALIDATION_RESULTS.md
+        echo "" >> VALIDATION_RESULTS.md
+        
+        if [ -f validation_report.json ]; then
+          echo "## Validation Results" >> VALIDATION_RESULTS.md
+          echo '```json' >> VALIDATION_RESULTS.md
+          cat validation_report.json >> VALIDATION_RESULTS.md
+          echo '```' >> VALIDATION_RESULTS.md
+        fi
+
+    - name: Upload validation report
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: validation-report
+        path: |
+          validation_report.json
+          VALIDATION_RESULTS.md
+
+    - name: Comment on PR
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          let comment = '## 🔍 Unified Anomaly Detection Validation\n\n';
+          comment += '✅ Validation completed successfully!\n\n';
+          
+          if (fs.existsSync('validation_report.json')) {
+            const report = JSON.parse(fs.readFileSync('validation_report.json', 'utf8'));
+            comment += '### Summary\n';
+            comment += `- **Records:** ${report.records}\n`;
+            comment += `- **Columns:** ${report.columns}\n`;
+            comment += `- **Methods Tested:** ${Object.keys(report.results).length}\n\n`;
+            
+            comment += '### Results\n';
+            comment += '| Method | Anomalies | % | Time |\n';
+            comment += '|--------|-----------|---|------|\n';
+            
+            for (const [method, data] of Object.entries(report.results)) {
+              const pct = ((data.anomalies / report.records) * 100).toFixed(2);
+              comment += `| ${method} | ${data.anomalies} | ${pct}% | ${data.time.toFixed(4)}s |\n`;
+            }
+          }
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });
+
+    - name: Test Results
+      if: always()
+      run: |
+        echo "✅ Validation workflow completed"
+        echo "📊 Check artifacts for detailed reports"

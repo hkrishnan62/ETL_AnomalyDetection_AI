@@ -201,11 +201,9 @@ gh run download <run-id> -D ./ml-results
 
 ## Files Involved
 
-- **Workflow:** `.github/workflows/ml-validation-workflow.yml`
-- **Test script:** `scripts/full_validation_test.py`
-- **Integration test:** `scripts/test_ml_integration.py`
-- **Implementation:** `src/validation/ml_anomaly.py`
-- **Documentation:** `ML_EXTENSIONS_REPORT.md`, `QUICK_START_ML.md`
+- **Workflow:** `.github/workflows/unified-validation.yml` (consolidated master workflow)
+- **Validation script:** `scripts/unified_validation.py` (all 11 methods)
+- **Validation modules:** `src/validation/` (anomaly_detector.py, rule_validator.py, ml_anomaly.py, ai_techniques.py)
 
 ---
 
@@ -213,13 +211,13 @@ gh run download <run-id> -D ./ml-results
 
 - Workflow requires Python 3.12+
 - TensorFlow installation takes ~2 minutes
-- Full validation test takes ~3-5 minutes per dataset
+- Full validation runs ~36 seconds for 50,000 records
 - Ubuntu-latest runner used (Linux environment)
 - All results are artifacts and can be downloaded
 
 ---
 
 For more information:
-- See `QUICK_START_ML.md` for quick reference
-- See `ML_EXTENSIONS_REPORT.md` for detailed analysis
+- See `UNIFIED_VALIDATION_GUIDE.md` for complete validation reference
+- See `CONSOLIDATION_SUMMARY.md` for consolidation details
 - See `INDEX.md` for complete documentation
