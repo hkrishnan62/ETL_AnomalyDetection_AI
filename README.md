@@ -41,22 +41,36 @@ All working together as a team to spot suspicious activity. Each method is diffe
 ### Traditional Frameworks (What They Miss)
 
 ❌ **Single Method** - Only looks for ONE type of problem
-❌ **Rigid Rules** - Can't adapt when fraud patterns change  
+
+❌ **Rigid Rules** - Can't adapt when fraud patterns change 
+
 ❌ **Slow** - Analyzing complex patterns takes too long
+
 ❌ **Loses Anomalies** - Found anomalies are deleted after reporting
+
 ❌ **Hard to Improve** - Can't test if detection logic is working correctly
+
 ❌ **Generic** - Not designed for financial/compliance scenarios
+
 ❌ **Difficult to Use** - Needs different scripts for different tasks
+
 
 ### This Framework (What You Get)
 
 ✅ **11 Detection Methods** - Complementary techniques catch different patterns
+
 ✅ **Smart Learning** - AI adapts to new fraud types automatically
+
 ✅ **Fast** - Deep learning detection in 20 seconds for 50K records
+
 ✅ **Preserves Anomalies** - Saves all findings for continuous testing
+
 ✅ **Testable** - Unit-test your detection logic continuously
+
 ✅ **Compliance-Ready** - Built for financial crime detection (AML, structuring, sanctions)
+
 ✅ **Simple CLI** - One command validates everything
+
 
 ---
 
@@ -377,13 +391,13 @@ Neural-Symbolic             • Combine neural networks + logic
 
 ```
 
-Method              │ Speed     │ Coverage  │ Type         │ Best For
+Method              │ Speed     │ Coverage  │ Type         │ Best For|
 ──────────────────────────────────────────────────────────────────────────
-Rule-based          │ ⚡⚡⚡    │ Medium    │ Structural   │ Validation
-IQR                 │ ⚡⚡⚡    │ Low       │ Univariate   │ Simple cases
-Isolation Forest ⭐ │ ⚡⚡      │ ⚡⚡⚡     │ Multivariate │ General use
-Clustering          │ ⚡⚡⚡    │ Medium    │ Behavioral   │ Real-time
-Autoencoder         │ ⚠ Slow   │ ⚡⚡⚡     │ Non-linear   │ Complex patterns
+Rule-based          │ ⚡⚡⚡    │ Medium    │ Structural   │ Validation|
+IQR                 │ ⚡⚡⚡    │ Low       │ Univariate   │ Simple cases|
+Isolation Forest ⭐ │ ⚡⚡      │ ⚡⚡⚡     │ Multivariate │ General use|
+Clustering          │ ⚡⚡⚡    │ Medium    │ Behavioral   │ Real-time|
+Autoencoder         │ ⚠ Slow   │ ⚡⚡⚡     │ Non-linear   │ Complex patterns|
 ```
 
 ## Installation
