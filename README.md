@@ -49,7 +49,6 @@ ETL_AnomalyDetection_AI
 ```
 ![Architecture](docs/Architecture_Diagram.png)
 
-
 ## Installation
 
 1. Clone the repository:
