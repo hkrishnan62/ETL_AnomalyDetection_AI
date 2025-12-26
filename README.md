@@ -487,6 +487,10 @@ python scripts/full_validation_test.py
 ```
 Compares all 5 detection methods on 3 datasets (147K+ records total)
 
+**Outputs:**
+- 📊 `logs/ml_validation_report.html` - Interactive visual report (open in browser)
+- 📝 `logs/ml_validation_console.txt` - Detailed console output
+
 **2. Use in Code:**
 ```python
 from src.validation.anomaly_detector import AnomalyDetector
@@ -515,7 +519,7 @@ metrics = orchestrator.transform(df, use_ml=True, ml_method='isolation_forest')
 - Go to [Actions tab](https://github.com/hkrishnan62/ETL_AnomalyDetection_AI/actions)
 - Find "ML/AI Anomaly Detection Validation"
 - Click "Run workflow"
-- Download detailed comparison reports
+- Download artifacts with interactive HTML report and detailed results
 
 ### Documentation
 

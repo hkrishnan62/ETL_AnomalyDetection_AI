@@ -40,7 +40,8 @@ jobs:
     - name: Run Full Validation Test
       run: |
         cd /home/runner/work/ETL_AnomalyDetection_AI/ETL_AnomalyDetection_AI
-        python scripts/full_validation_test.py > logs/ml_validation_report.txt 2>&1
+        python scripts/full_validation_test.py > logs/ml_validation_console.txt 2>&1
+        echo "✅ Full validation completed. Check logs/ml_validation_report.html for interactive report."
       continue-on-error: false
 
     - name: Run Integration Test
@@ -90,7 +91,8 @@ jobs:
       with:
         name: ml-validation-reports
         path: |
-          logs/ml_validation_report.txt
+          logs/ml_validation_report.html
+          logs/ml_validation_console.txt
           logs/ml_integration_test.txt
           logs/validation_summary.md
 
@@ -100,13 +102,14 @@ jobs:
         echo "## ML/AI Anomaly Detection Validation Complete ✓"
         echo ""
         echo "### Results Summary"
-        echo "- Full validation test: $(grep -c 'COMPARISON' logs/ml_validation_report.txt > /dev/null 2>&1 && echo '✓ Passed' || echo '⚠ Check logs')"
+        echo "- Full validation test: $(grep -c 'COMPARISON' logs/ml_validation_console.txt > /dev/null 2>&1 && echo '✓ Passed' || echo '⚠ Check logs')"
         echo "- Integration test: $(grep -c 'Integration test passed' logs/ml_integration_test.txt > /dev/null 2>&1 && echo '✓ Passed' || echo '⚠ Check logs')"
         echo ""
-        echo "### Files Generated"
-        echo "- ml_validation_report.txt - Detailed comparison of all detection methods"
-        echo "- ml_integration_test.txt - Integration test with orchestrator"
-        echo "- validation_summary.md - Summary report"
+        echo "### Reports Generated"
+        echo "- 📊 **ml_validation_report.html** - Interactive visual report (recommended)"
+        echo "- 📝 ml_validation_console.txt - Detailed console output"
+        echo "- 🔗 ml_integration_test.txt - Integration test results"
+        echo "- 📋 validation_summary.md - Summary report"
         echo ""
-        echo "### Key Results from Last Run"
-        tail -50 logs/ml_validation_report.txt | grep -A 20 "FINAL SUMMARY"
+        echo "### Key Results"
+        tail -50 logs/ml_validation_console.txt | grep -A 20 "FINAL SUMMARY"
