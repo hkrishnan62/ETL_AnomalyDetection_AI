@@ -673,11 +673,10 @@ Autoencoder         │ ⚠ Slow   │ ⚡⚡⚡     │ Non-linear   │ Comple
 
 ### CSV Testing Framework
 
-Execute the main orchestrator script for CSV anomaly detection:
+Run the unified validation script for CSV anomaly detection:
 
 ```bash
-cd src
-python orchestrator.py
+python scripts/unified_validation.py --csv data/cleaned_data.csv
 ```
 
 This will:
@@ -724,8 +723,7 @@ pip install -r requirements.txt
 2. Run the CSV orchestrator:
 
 ```bash
-cd src
-python orchestrator.py
+python scripts/unified_validation.py --csv data/cleaned_data.csv
 ```
 
 3. (Optional) Prepare and scan the SQLite DB:
