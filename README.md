@@ -47,7 +47,7 @@ ETL_AnomalyDetection_AI
 ├── requirements.txt            # Python dependencies
 └── README.md                   # This file
 ```
-![Architecture](docs/Architecture_Diagram.png)
+![Architecture](data/Architecture_Diagram.png)
 
 ## Installation
 
