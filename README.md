@@ -336,9 +336,7 @@ On 50K-record datasets:
 
 ![Architecture](data/Ach_new.png)
 
-### Data Flow Example: One Transaction
 
-![Architecture](data/Single_Transaction.png)
 
 ### Method Selection Guide
 
